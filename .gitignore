@@ -7,8 +7,4 @@ __pycache__/
 drift_reports/
 
 
-drift_detector/__init__.py
-drift_detector/__
-README.md
-requirements.txt
-.env.example
+
