@@ -5,7 +5,7 @@ __pycache__/
 .idea/
 .vscode/
 drift_reports/
-drift_detector/cli.py
+
 drift_detector/config.py
 drift_detector/llm.py
 drift_detector.py
