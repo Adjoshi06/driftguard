@@ -6,9 +6,7 @@ __pycache__/
 .vscode/
 drift_reports/
 
-drift_detector/config.py
-drift_detector/llm.py
-drift_detector.py
+
 drift_detector/__init__.py
 drift_detector/__
 README.md
