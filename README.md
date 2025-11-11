@@ -123,5 +123,6 @@ MEDIUM (1)
 
 ## License
 
-MIT (customize as needed).
+MIT 
+
 
