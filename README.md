@@ -1,4 +1,4 @@
-# Documentation Drift Detector
+# Driftguard
 
 Detects gaps between source code changes and related documentation updates. Designed for minimal setup while remaining flexible across LLM providers.
 
