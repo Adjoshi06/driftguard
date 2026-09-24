@@ -1,0 +1,6 @@
+# Auto-detected from GitHub repo settings (Adjoshi06/driftguard)
+default_branch: master
+merge:
+  # Repo allows merge commit, squash, and rebase; squash chosen as default.
+  method: squash
+  allowed: [merge, squash, rebase]

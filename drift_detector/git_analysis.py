@@ -48,7 +48,17 @@ class GitAnalyzer:
 
             change_type = _map_change_type(diff_item.change_type)
             if change_type is None:
-                continue
+                # GitPython does not populate ``change_type`` for diffs parsed
+                # from patch format (create_patch=True). Infer it from the
+                # blob sides so plain modifications are not dropped.
+                if diff_item.a_blob is not None and diff_item.b_blob is not None:
+                    change_type = ChangeType.MODIFIED
+                elif diff_item.b_blob is not None:
+                    change_type = ChangeType.ADDED
+                elif diff_item.a_blob is not None:
+                    change_type = ChangeType.REMOVED
+                else:
+                    continue
 
             if _looks_like_documentation(file_path):
                 repository_changes.documentation_files_changed.add(file_path)
@@ -195,7 +205,7 @@ class GitAnalyzer:
         return parents[0], head_commit
 
 
-def _map_change_type(change_type: str) -> Optional[ChangeType]:
+def _map_change_type(change_type: Optional[str]) -> Optional[ChangeType]:
     mapping = {
         "A": ChangeType.ADDED,
         "M": ChangeType.MODIFIED,
@@ -203,6 +213,8 @@ def _map_change_type(change_type: str) -> Optional[ChangeType]:
         "R": ChangeType.MODIFIED,
         "T": ChangeType.MODIFIED,
     }
+    if change_type is None:
+        return None
     return mapping.get(change_type.upper())
 
 
